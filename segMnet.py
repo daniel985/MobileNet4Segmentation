@@ -17,15 +17,10 @@ slim = tf.contrib.slim
 
 def segMnet(inputs, multiplier):
     segMnet, end_points = mobilenet_v1.mobilenet_v1_base(inputs, depth_multiplier=multiplier)
-
-    with tf.variable_scope('fc'):
-        shape = [1, 1, int(1024*multiplier), 2]
-        initializer = tf.contrib.layers.xavier_initializer()
-        weight = tf.Variable(initializer(shape))
-        segMnet = tf.nn.conv2d(segMnet, weight, strides=[1, 1, 1, 1], padding='SAME', name='conv')
+    filters = int(1024*multiplier)
 
     with tf.variable_scope('deconv'):
-        wshape = [64, 64, 2, 2]
+        wshape = [64, 64, 2, filters]
         strides = [1, 32, 32, 1]
         initializer = tf.contrib.layers.xavier_initializer()
         weight = tf.Variable(initializer(wshape))

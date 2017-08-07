@@ -15,3 +15,8 @@ https://github.com/tensorflow/models/blob/master/slim/nets/mobilenet_v1.md
 
 4.Use 'RGB' image for test
 
+5.segMnet_ASPP.py provide ASPP module which from deeplab3:
+
+https://arxiv.org/pdf/1706.05587.pdf
+
+6.test_with_crf.py provide CRF module
