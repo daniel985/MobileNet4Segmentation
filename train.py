@@ -27,7 +27,7 @@ def preprocess(image,height=HEIGHT,width=WIDTH):
     MEAN_VALUES = np.array([123.68, 116.78, 103.94])
     img = image[:,:,:3] - MEAN_VALUES
     img.set_shape(shape=(height,width,3))
-    mask = tf.cast(image[:,:,:,3], tf.uint8)
+    mask = tf.cast(image[:,:,3], tf.uint8)
     mask = tf.expand_dims(mask, axis=2)
     mask.set_shape(shape=(height,width,1))
     return img, mask
